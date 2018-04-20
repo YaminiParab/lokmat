@@ -24,13 +24,14 @@ public class ImportFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment, container, false);
+        View view =inflater.inflate(R.layout.category, container, false);
         mygrid = (GridView) view.findViewById(R.id.gridview);
-//        mygrid.setAdapter(new ViewAdapter(new ViewAdapter(view.getContext())));
+        ViewAdapter va = new ViewAdapter(getActivity());
+        mygrid.setAdapter(va);
         return view;
  }
 
-}
+
 class Country {
     int imageId;
     String image_name;
@@ -38,6 +39,8 @@ class Country {
         this.imageId=imageId;
         this.image_name=image_name;
     }
+
+
 
 }
 
@@ -50,10 +53,8 @@ class ViewAdapter extends BaseAdapter {
         String[] temparray = res.getStringArray(R.array.category_names);
         int [] images = {R.drawable.business};
         list=new ArrayList<Country>();
-        for (int i=0; i<5;i++) {
-            Country temp_country = new Country(images[0],temparray[i]);
-            list.add(temp_country);
-        }
+        Country temp_country = new Country(images[0],temparray[0]);
+        list.add(temp_country);
 
     }
     @Override
@@ -92,7 +93,8 @@ class ViewAdapter extends BaseAdapter {
             holder = (ViewHolder) row.getTag();
         }
         Country temp = list.get(i);
-        holder.mycountry.setImageResource(temp.imageId);
+        holder.mycountry.setImageResource(R.drawable.business);
         return row;
     }
+}
 }
