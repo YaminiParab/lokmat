@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -51,10 +52,13 @@ class ViewAdapter extends BaseAdapter {
         this.context =context;
         Resources res= context.getResources();
         String[] temparray = res.getStringArray(R.array.category_names);
-        int [] images = {R.drawable.business};
+        int [] images = {R.drawable.business, R.drawable.sport, R.drawable.sport_car,
+                R.drawable.business, R.drawable.sport, R.drawable.sport_car};
         list=new ArrayList<Country>();
-        Country temp_country = new Country(images[0],temparray[0]);
-        list.add(temp_country);
+        for (int i=0; i<6;i++) {
+            Country temp_country = new Country(images[i], temparray[i]);
+            list.add(temp_country);
+        }
 
     }
     @Override
@@ -93,7 +97,7 @@ class ViewAdapter extends BaseAdapter {
             holder = (ViewHolder) row.getTag();
         }
         Country temp = list.get(i);
-        holder.mycountry.setImageResource(R.drawable.business);
+        holder.mycountry.setImageResource(temp.imageId);
         return row;
     }
 }
