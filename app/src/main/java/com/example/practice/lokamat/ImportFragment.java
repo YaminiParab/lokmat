@@ -53,6 +53,8 @@ class ViewAdapter extends BaseAdapter {
         Resources res= context.getResources();
         String[] temparray = res.getStringArray(R.array.category_names);
         int [] images = {R.drawable.business, R.drawable.sport, R.drawable.sport_car,
+                R.drawable.business, R.drawable.sport, R.drawable.sport_car,
+                R.drawable.business, R.drawable.sport, R.drawable.sport_car,
                 R.drawable.business, R.drawable.sport, R.drawable.sport_car};
         list=new ArrayList<Country>();
         for (int i=0; i<6;i++) {
@@ -77,8 +79,10 @@ class ViewAdapter extends BaseAdapter {
     }
     class ViewHolder {
         ImageView mycountry;
+        TextView demo_text;
         ViewHolder (View v) {
-            mycountry = (ImageView) v.findViewById(R.id.imageView);
+            mycountry =  v.findViewById(R.id.imageView);
+            demo_text = v.findViewById(R.id.txtview);
         }
     }
 
@@ -98,6 +102,7 @@ class ViewAdapter extends BaseAdapter {
         }
         Country temp = list.get(i);
         holder.mycountry.setImageResource(temp.imageId);
+        holder.demo_text.setText(temp.image_name);
         return row;
     }
 }
